@@ -12,13 +12,13 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score,precision_score
-# Data Analysis.
+
 df = pd.read_csv(r'C:\\Users\\Shivkesh\\Documents\\Spam_Detection\\mail_data.csv')
 df.rename(columns = {'Category' : 'target','Message' : 'text'},inplace = True)
 encoder = LabelEncoder()
 df['target'] = encoder.fit_transform(df['target'])
 df = df.drop_duplicates(keep = 'first')
-# Data Preprocessing.
+
 ps = PorterStemmer()
 
 def transform_text(text) :
@@ -44,7 +44,7 @@ def transform_text(text) :
     return " ".join(y)
 
 df['transformed_text'] = df['text'].apply(transform_text)
-# Creating and training the Model.
+
 tfidf = TfidfVectorizer(max_features = 3000)
 x = tfidf.fit_transform(df['transformed_text']).toarray()
 y = df['target'].values
@@ -54,12 +54,12 @@ mnb = MultinomialNB()
 mnb.fit(x_train,y_train)
 y_pred = mnb.predict(x_test)
 y_pred1 = mnb.predict(x_train)
-# Accuracy and precision Scores.
+
 print("accuracy_score on test data: ",accuracy_score(y_test,y_pred))
 print("precision_score on test data: ",precision_score(y_test,y_pred))
 print("accuracy_score on train data: ",accuracy_score(y_train,y_pred1))
 print("precision_score on train data: ",precision_score(y_train,y_pred1))
-# Giving Dynamic Inputs.
+
 input_mail = ''' '''
 transform = transform_text(input_mail)
 
