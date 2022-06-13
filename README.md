@@ -1,0 +1,2 @@
+# Classification-of-mail-as-spam-or-ham-using-machine-learning
+The project classifies an email as spam or ham(not spam) using Machine learning Algorithm. This project is useful for every single person who uses email for communication.The email message is fed as input and Multinomial Naive Bayes Algorithm is used to predict the email message as spam or ham. Technology used is Jupyter notebook with Python as programming language and HTML,CSS and PHP as Front End.
